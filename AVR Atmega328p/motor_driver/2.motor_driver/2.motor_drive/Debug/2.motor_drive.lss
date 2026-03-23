@@ -3,29 +3,29 @@
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  00000140  2**0
+  0 .data         00000000  00800100  00800100  00000156  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         000000ec  00000000  00000000  00000054  2**1
+  1 .text         00000102  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  00000140  2**0
+  2 .comment      00000030  00000000  00000000  00000156  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000170  2**2
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000188  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000020  00000000  00000000  000001b0  2**0
+  4 .debug_aranges 00000020  00000000  00000000  000001c8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   0000073e  00000000  00000000  000001d0  2**0
+  5 .debug_info   0000072e  00000000  00000000  000001e8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 0000067b  00000000  00000000  0000090e  2**0
+  6 .debug_abbrev 00000679  00000000  00000000  00000916  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000291  00000000  00000000  00000f89  2**0
+  7 .debug_line   000002c7  00000000  00000000  00000f8f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000024  00000000  00000000  0000121c  2**2
+  8 .debug_frame  00000024  00000000  00000000  00001258  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000003da  00000000  00000000  00001240  2**0
+  9 .debug_str    000003ec  00000000  00000000  0000127c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000090  00000000  00000000  0000161a  2**0
+ 10 .debug_loc    000000b2  00000000  00000000  00001668  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000010  00000000  00000000  000016aa  2**0
+ 11 .debug_ranges 00000010  00000000  00000000  0000171a  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -66,99 +66,147 @@ Disassembly of section .text:
   70:	de bf       	out	0x3e, r29	; 62
   72:	cd bf       	out	0x3d, r28	; 61
   74:	0e 94 40 00 	call	0x80	; 0x80 <main>
-  78:	0c 94 74 00 	jmp	0xe8	; 0xe8 <_exit>
+  78:	0c 94 7f 00 	jmp	0xfe	; 0xfe <_exit>
 
 0000007c <__bad_interrupt>:
   7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000080 <main>:
+
+int main(void)
+{
+	uint8_t direction=0;
+	uint8_t main=0;
+	DDRD |= (1<<DDD1)|(1<<DDD2)|(1<<DDD3)|(1<<DDD4); //Data direction registers Enabled for PORTD Pins.
+  80:	8a b1       	in	r24, 0x0a	; 10
+  82:	8e 61       	ori	r24, 0x1E	; 30
+  84:	8a b9       	out	0x0a, r24	; 10
+	DDRC &= ~(1<<DDC3); //PortC3 Configure as input.
+  86:	87 b1       	in	r24, 0x07	; 7
+  88:	87 7f       	andi	r24, 0xF7	; 247
+  8a:	87 b9       	out	0x07, r24	; 7
+	DDRC &= ~(1<<DDC4); //PortC4 configured as input,
+  8c:	87 b1       	in	r24, 0x07	; 7
+  8e:	8f 7e       	andi	r24, 0xEF	; 239
+  90:	87 b9       	out	0x07, r24	; 7
+	PORTC |= (1<<PC4);  //Enable the PORTC4 pin to access the internal pull-up configuration in Atmega328P.
+  92:	88 b1       	in	r24, 0x08	; 8
+  94:	80 61       	ori	r24, 0x10	; 16
+  96:	88 b9       	out	0x08, r24	; 8
 #include <avr/io.h>
 #include<util/delay.h>
 
 int main(void)
 {
-	DDRD |= (1<<DDD1)|(1<<DDD2)|(1<<DDD3)|(1<<DDD4);
-  80:	8a b1       	in	r24, 0x0a	; 10
-  82:	8e 61       	ori	r24, 0x1E	; 30
-  84:	8a b9       	out	0x0a, r24	; 10
-	DDRC &= ~(1<<DDC3);
-  86:	87 b1       	in	r24, 0x07	; 7
-  88:	87 7f       	andi	r24, 0xF7	; 247
-  8a:	87 b9       	out	0x07, r24	; 7
-    /* Replace with your application code */
+	uint8_t direction=0;
+  98:	20 e0       	ldi	r18, 0x00	; 0
+  9a:	01 c0       	rjmp	.+2      	; 0x9e <main+0x1e>
+#define F_CPU 1600000UL
+#include <avr/io.h>
+#include<util/delay.h>
+
+int main(void)
+{
+  9c:	29 2f       	mov	r18, r25
+	DDRC &= ~(1<<DDC4); //PortC4 configured as input,
+	PORTC |= (1<<PC4);  //Enable the PORTC4 pin to access the internal pull-up configuration in Atmega328P.
+    
     while (1) 
     {
-		PORTD |=  (1<<PD1);
-  8c:	8b b1       	in	r24, 0x0b	; 11
-  8e:	82 60       	ori	r24, 0x02	; 2
-  90:	8b b9       	out	0x0b, r24	; 11
-		PORTD &= ~(1<<PD2);
-  92:	8b b1       	in	r24, 0x0b	; 11
-  94:	8b 7f       	andi	r24, 0xFB	; 251
-  96:	8b b9       	out	0x0b, r24	; 11
-		PORTD |=  (1<<PD3);
-  98:	8b b1       	in	r24, 0x0b	; 11
-  9a:	88 60       	ori	r24, 0x08	; 8
-  9c:	8b b9       	out	0x0b, r24	; 11
+		if((PINC&(1<<PINC3)))
+  9e:	33 9b       	sbis	0x06, 3	; 6
+  a0:	02 c0       	rjmp	.+4      	; 0xa6 <main+0x26>
+		{
+			main =1;
+  a2:	81 e0       	ldi	r24, 0x01	; 1
+  a4:	01 c0       	rjmp	.+2      	; 0xa8 <main+0x28>
+		}
+						else
+						{
+							main =0;
+  a6:	80 e0       	ldi	r24, 0x00	; 0
+						}
+	
+				if(!(PINC & (1<<PINC4)))
+  a8:	34 99       	sbic	0x06, 4	; 6
+  aa:	f9 cf       	rjmp	.-14     	; 0x9e <main+0x1e>
+				{
+					direction=!direction; //Toggle the PIN status.
+  ac:	91 e0       	ldi	r25, 0x01	; 1
+  ae:	21 11       	cpse	r18, r1
+  b0:	90 e0       	ldi	r25, 0x00	; 0
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
-  9e:	2f ef       	ldi	r18, 0xFF	; 255
-  a0:	85 ea       	ldi	r24, 0xA5	; 165
-  a2:	9e e0       	ldi	r25, 0x0E	; 14
-  a4:	21 50       	subi	r18, 0x01	; 1
-  a6:	80 40       	sbci	r24, 0x00	; 0
-  a8:	90 40       	sbci	r25, 0x00	; 0
-  aa:	e1 f7       	brne	.-8      	; 0xa4 <main+0x24>
-  ac:	00 c0       	rjmp	.+0      	; 0xae <main+0x2e>
-  ae:	00 00       	nop
-		_delay_ms(3000);
-		PORTD |=  (1<<PD2);
-  b0:	8b b1       	in	r24, 0x0b	; 11
-  b2:	84 60       	ori	r24, 0x04	; 4
-  b4:	8b b9       	out	0x0b, r24	; 11
-		PORTD &= ~(1<<PD1);
-  b6:	8b b1       	in	r24, 0x0b	; 11
-  b8:	8d 7f       	andi	r24, 0xFD	; 253
-  ba:	8b b9       	out	0x0b, r24	; 11
-		PORTD &= ~(1<<PD3);
-  bc:	8b b1       	in	r24, 0x0b	; 11
-  be:	87 7f       	andi	r24, 0xF7	; 247
-  c0:	8b b9       	out	0x0b, r24	; 11
-  c2:	2f ef       	ldi	r18, 0xFF	; 255
-  c4:	85 ea       	ldi	r24, 0xA5	; 165
-  c6:	9e e0       	ldi	r25, 0x0E	; 14
-  c8:	21 50       	subi	r18, 0x01	; 1
-  ca:	80 40       	sbci	r24, 0x00	; 0
-  cc:	90 40       	sbci	r25, 0x00	; 0
-  ce:	e1 f7       	brne	.-8      	; 0xc8 <main+0x48>
-  d0:	00 c0       	rjmp	.+0      	; 0xd2 <main+0x52>
-  d2:	00 00       	nop
-		_delay_ms(3000);
-		
-				if(PINC & (1<<PINC3))
-  d4:	33 9b       	sbis	0x06, 3	; 6
-  d6:	04 c0       	rjmp	.+8      	; 0xe0 <main+0x60>
+  b2:	ef e1       	ldi	r30, 0x1F	; 31
+  b4:	fe e4       	ldi	r31, 0x4E	; 78
+  b6:	31 97       	sbiw	r30, 0x01	; 1
+  b8:	f1 f7       	brne	.-4      	; 0xb6 <main+0x36>
+  ba:	00 c0       	rjmp	.+0      	; 0xbc <main+0x3c>
+  bc:	00 00       	nop
+					_delay_ms(50);
+				if(direction)
+  be:	21 11       	cpse	r18, r1
+  c0:	0c c0       	rjmp	.+24     	; 0xda <main+0x5a>
 				{
-                   PORTD |=  (1<<PD4);					
-  d8:	8b b1       	in	r24, 0x0b	; 11
-  da:	80 61       	ori	r24, 0x10	; 16
-  dc:	8b b9       	out	0x0b, r24	; 11
-  de:	d6 cf       	rjmp	.-84     	; 0x8c <main+0xc>
-			    }
+					if(main)
+  c2:	88 23       	and	r24, r24
+  c4:	59 f3       	breq	.-42     	; 0x9c <main+0x1c>
+					{
+						PORTD |=  (1<<PD1); //as output for motor.
+  c6:	8b b1       	in	r24, 0x0b	; 11
+  c8:	82 60       	ori	r24, 0x02	; 2
+  ca:	8b b9       	out	0x0b, r24	; 11
+						PORTD &= ~(1<<PD2); //as output for motor.
+  cc:	8b b1       	in	r24, 0x0b	; 11
+  ce:	8b 7f       	andi	r24, 0xFB	; 251
+  d0:	8b b9       	out	0x0b, r24	; 11
+						PORTD |=  (1<<PD3); //as output for status led.
+  d2:	8b b1       	in	r24, 0x0b	; 11
+  d4:	88 60       	ori	r24, 0x08	; 8
+  d6:	8b b9       	out	0x0b, r24	; 11
+  d8:	e1 cf       	rjmp	.-62     	; 0x9c <main+0x1c>
+					//else
+				//	{
+				//		PORTD &= ~(1<<PD1)|(1<<PD2)|(1<<PD3); //as output for motor.
+				//	}
+				}	
+				else if(!(direction))
+  da:	22 23       	and	r18, r18
+  dc:	61 f0       	breq	.+24     	; 0xf6 <main+0x76>
+				{
+					if(main)
+  de:	88 23       	and	r24, r24
+  e0:	e9 f2       	breq	.-70     	; 0x9c <main+0x1c>
+				{
+					PORTD |=  (1<<PD2); //as output for motor.
+  e2:	8b b1       	in	r24, 0x0b	; 11
+  e4:	84 60       	ori	r24, 0x04	; 4
+  e6:	8b b9       	out	0x0b, r24	; 11
+					PORTD &= ~(1<<PD1); //as output for motor.	
+  e8:	8b b1       	in	r24, 0x0b	; 11
+  ea:	8d 7f       	andi	r24, 0xFD	; 253
+  ec:	8b b9       	out	0x0b, r24	; 11
+					PORTD |= (1<<PD4);	
+  ee:	8b b1       	in	r24, 0x0b	; 11
+  f0:	80 61       	ori	r24, 0x10	; 16
+  f2:	8b b9       	out	0x0b, r24	; 11
+  f4:	d3 cf       	rjmp	.-90     	; 0x9c <main+0x1c>
+				}
+                }
 				else
 				{
-					PORTD &=  ~(1<<PD4);
-  e0:	8b b1       	in	r24, 0x0b	; 11
-  e2:	8f 7e       	andi	r24, 0xEF	; 239
-  e4:	8b b9       	out	0x0b, r24	; 11
-  e6:	d2 cf       	rjmp	.-92     	; 0x8c <main+0xc>
+					PORTD &= ~(1<<PD1)|(1<<PD2)|(1<<PD4); //as output for motor.
+  f6:	8b b1       	in	r24, 0x0b	; 11
+  f8:	8d 7f       	andi	r24, 0xFD	; 253
+  fa:	8b b9       	out	0x0b, r24	; 11
+  fc:	cf cf       	rjmp	.-98     	; 0x9c <main+0x1c>
 
-000000e8 <_exit>:
-  e8:	f8 94       	cli
+000000fe <_exit>:
+  fe:	f8 94       	cli
 
-000000ea <__stop_program>:
-  ea:	ff cf       	rjmp	.-2      	; 0xea <__stop_program>
+00000100 <__stop_program>:
+ 100:	ff cf       	rjmp	.-2      	; 0x100 <__stop_program>
