@@ -1,0 +1,265 @@
+
+Motor_driver_state_level.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  000001dc  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000168  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000003  00800100  00800100  000001dc  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000001dc  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000020c  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000038  00000000  00000000  0000024c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000857  00000000  00000000  00000284  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000703  00000000  00000000  00000adb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000032c  00000000  00000000  000011de  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000054  00000000  00000000  0000150c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000004ad  00000000  00000000  00001560  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000090  00000000  00000000  00001a0d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000028  00000000  00000000  00001a9d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a3 30       	cpi	r26, 0x03	; 3
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 9c 00 	call	0x138	; 0x138 <main>
+  88:	0c 94 b2 00 	jmp	0x164	; 0x164 <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <_Z12switch_statev>:
+}
+}
+
+void switch_state()
+{
+	if(PINC & (1<<PINC3))
+  90:	33 9b       	sbis	0x06, 3	; 6
+  92:	11 c0       	rjmp	.+34     	; 0xb6 <_Z12switch_statev+0x26>
+	{
+		main_switch ^=1;
+  94:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+  98:	81 e0       	ldi	r24, 0x01	; 1
+  9a:	89 27       	eor	r24, r25
+  9c:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+		while(PINC & (1<<PINC3));
+  a0:	33 99       	sbic	0x06, 3	; 6
+  a2:	fe cf       	rjmp	.-4      	; 0xa0 <_Z12switch_statev+0x10>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  a4:	2f ef       	ldi	r18, 0xFF	; 255
+  a6:	80 e7       	ldi	r24, 0x70	; 112
+  a8:	92 e0       	ldi	r25, 0x02	; 2
+  aa:	21 50       	subi	r18, 0x01	; 1
+  ac:	80 40       	sbci	r24, 0x00	; 0
+  ae:	90 40       	sbci	r25, 0x00	; 0
+  b0:	e1 f7       	brne	.-8      	; 0xaa <_Z12switch_statev+0x1a>
+  b2:	00 c0       	rjmp	.+0      	; 0xb4 <_Z12switch_statev+0x24>
+  b4:	00 00       	nop
+		_delay_ms(50);
+	}
+	if(!(PINC & (1<<PINC4)))
+  b6:	34 99       	sbic	0x06, 4	; 6
+  b8:	12 c0       	rjmp	.+36     	; 0xde <_Z12switch_statev+0x4e>
+	{
+		direction_switch =!direction_switch;
+  ba:	81 e0       	ldi	r24, 0x01	; 1
+  bc:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <direction_switch>
+  c0:	91 11       	cpse	r25, r1
+  c2:	80 e0       	ldi	r24, 0x00	; 0
+  c4:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <direction_switch>
+		while(!(PINC & (1<<PINC4)));
+  c8:	34 9b       	sbis	0x06, 4	; 6
+  ca:	fe cf       	rjmp	.-4      	; 0xc8 <_Z12switch_statev+0x38>
+  cc:	2f ef       	ldi	r18, 0xFF	; 255
+  ce:	80 e7       	ldi	r24, 0x70	; 112
+  d0:	92 e0       	ldi	r25, 0x02	; 2
+  d2:	21 50       	subi	r18, 0x01	; 1
+  d4:	80 40       	sbci	r24, 0x00	; 0
+  d6:	90 40       	sbci	r25, 0x00	; 0
+  d8:	e1 f7       	brne	.-8      	; 0xd2 <_Z12switch_statev+0x42>
+  da:	00 c0       	rjmp	.+0      	; 0xdc <_Z12switch_statev+0x4c>
+  dc:	00 00       	nop
+  de:	08 95       	ret
+
+000000e0 <_Z13update_switchv>:
+	}
+}
+
+void update_switch()
+{
+	if(main_switch==0)
+  e0:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+  e4:	81 11       	cpse	r24, r1
+  e6:	03 c0       	rjmp	.+6      	; 0xee <_Z13update_switchv+0xe>
+	{
+		CURRENT_STATE =STOP;
+  e8:	10 92 02 01 	sts	0x0102, r1	; 0x800102 <CURRENT_STATE>
+  ec:	08 95       	ret
+	}
+else
+{
+	if(direction_switch ==1)
+  ee:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <direction_switch>
+  f2:	81 30       	cpi	r24, 0x01	; 1
+  f4:	19 f4       	brne	.+6      	; 0xfc <_Z13update_switchv+0x1c>
+	{
+		CURRENT_STATE = FORWARD;
+  f6:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <CURRENT_STATE>
+  fa:	08 95       	ret
+	}
+	else
+	{
+		CURRENT_STATE = REVERSE;
+  fc:	82 e0       	ldi	r24, 0x02	; 2
+  fe:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <CURRENT_STATE>
+ 102:	08 95       	ret
+
+00000104 <_Z13motor_controlv>:
+}
+}
+
+void motor_control()
+{
+	switch(CURRENT_STATE)
+ 104:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <CURRENT_STATE>
+ 108:	81 30       	cpi	r24, 0x01	; 1
+ 10a:	41 f0       	breq	.+16     	; 0x11c <_Z13motor_controlv+0x18>
+ 10c:	18 f0       	brcs	.+6      	; 0x114 <_Z13motor_controlv+0x10>
+ 10e:	82 30       	cpi	r24, 0x02	; 2
+ 110:	61 f0       	breq	.+24     	; 0x12a <_Z13motor_controlv+0x26>
+ 112:	08 95       	ret
+	{
+		case STOP:
+		PORTD &= ~((1<<PD1)|(1<<PD2)|(1<<PD3)|(1<<PD4));
+ 114:	8b b1       	in	r24, 0x0b	; 11
+ 116:	81 7e       	andi	r24, 0xE1	; 225
+ 118:	8b b9       	out	0x0b, r24	; 11
+		break;
+ 11a:	08 95       	ret
+		case FORWARD:
+		PORTD |= (1<<PD1)|(1<<PD3);
+ 11c:	8b b1       	in	r24, 0x0b	; 11
+ 11e:	8a 60       	ori	r24, 0x0A	; 10
+ 120:	8b b9       	out	0x0b, r24	; 11
+		PORTD &= ~((1<<PD2)|(1<<PD4));
+ 122:	8b b1       	in	r24, 0x0b	; 11
+ 124:	8b 7e       	andi	r24, 0xEB	; 235
+ 126:	8b b9       	out	0x0b, r24	; 11
+		break;
+ 128:	08 95       	ret
+		case REVERSE:
+		PORTD |=(1<<PD2)|(1<<PD4);
+ 12a:	8b b1       	in	r24, 0x0b	; 11
+ 12c:	84 61       	ori	r24, 0x14	; 20
+ 12e:	8b b9       	out	0x0b, r24	; 11
+		PORTD &= ~((1<<PD1)|(1<<PORTD3));
+ 130:	8b b1       	in	r24, 0x0b	; 11
+ 132:	85 7f       	andi	r24, 0xF5	; 245
+ 134:	8b b9       	out	0x0b, r24	; 11
+ 136:	08 95       	ret
+
+00000138 <main>:
+uint8_t direction_switch=0;
+uint8_t main_switch=0;
+
+int main(void)
+{
+DDRD |= (1<<DDD1)|(1<<DDD2)|(1<<DDD3)|(1<<DDD4);//SET DATA DIRECTION REGISTERS AS O/P.
+ 138:	8a b1       	in	r24, 0x0a	; 10
+ 13a:	8e 61       	ori	r24, 0x1E	; 30
+ 13c:	8a b9       	out	0x0a, r24	; 10
+DDRC &= ~((1<<DDC3)|(1<<DDC4));//SET DATA DIRECTION REGISTERS AS I/P.
+ 13e:	87 b1       	in	r24, 0x07	; 7
+ 140:	87 7e       	andi	r24, 0xE7	; 231
+ 142:	87 b9       	out	0x07, r24	; 7
+PORTC |= (1<<PC4);   //ENABLE PULL UP.
+ 144:	88 b1       	in	r24, 0x08	; 8
+ 146:	80 61       	ori	r24, 0x10	; 16
+ 148:	88 b9       	out	0x08, r24	; 8
+
+while(1)
+{
+	switch_state();
+ 14a:	0e 94 48 00 	call	0x90	; 0x90 <_Z12switch_statev>
+	update_switch();
+ 14e:	0e 94 70 00 	call	0xe0	; 0xe0 <_Z13update_switchv>
+	motor_control();
+ 152:	0e 94 82 00 	call	0x104	; 0x104 <_Z13motor_controlv>
+ 156:	8f e3       	ldi	r24, 0x3F	; 63
+ 158:	9c e9       	ldi	r25, 0x9C	; 156
+ 15a:	01 97       	sbiw	r24, 0x01	; 1
+ 15c:	f1 f7       	brne	.-4      	; 0x15a <main+0x22>
+ 15e:	00 c0       	rjmp	.+0      	; 0x160 <main+0x28>
+ 160:	00 00       	nop
+ 162:	f3 cf       	rjmp	.-26     	; 0x14a <main+0x12>
+
+00000164 <_exit>:
+ 164:	f8 94       	cli
+
+00000166 <__stop_program>:
+ 166:	ff cf       	rjmp	.-2      	; 0x166 <__stop_program>
