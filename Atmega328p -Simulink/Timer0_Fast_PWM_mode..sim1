@@ -1,0 +1,59 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="MCU" CircId="mega328-1" mainComp="false" Show_id="true" Show_Val="false" Pos="-116,-32" rotation="0" hflip="1" vflip="1" label="mega328-1" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="../Atmega328p -Code/Timer 0/6.Timer0_Phase_correct_PWM/Timer_phase_correct _PWM/Timer_phase_correct _PWM/Debug/Timer_phase_correct _PWM.hex" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="true" SerialMon="-1" />
+
+<item itemtype="Led" CircId="Led-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-256,36" rotation="-630" hflip="1" vflip="1" label="Stat_LED" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Yellow" Grounded="false" Threshold="2.4 V" MaxCurrent="30 mA" Resistance="0.6 Ω" />
+
+<item itemtype="Ground" CircId="Ground-3" mainComp="false" Show_id="false" Show_Val="false" Pos="-256,124" rotation="0" hflip="1" vflip="1" label="Ground-3" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="TextComponent" CircId="TextComponent-6" mainComp="false" Show_id="false" Show_Val="false" Pos="-244,-128" rotation="0" hflip="1" vflip="1" label="TextComponent-6" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#ffffdc" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#000080" Font_Size="10 _px" Fixed_Width="true" Text="Timer0_Phasecorrect_PWM_mode (Motor Speed control)" />
+
+<item itemtype="Subcircuit" CircId="L293-7" mainComp="false" Show_id="true" Show_Val="false" Pos="-4,20" rotation="0" hflip="1" vflip="1" label="L293-7" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Input_High_V="2.5 V" Input_Low_V="2.5 V" Input_Imped="1e+09 Ω" Out_High_V="5 V" Out_Low_V="0 V" Out_Imped="40 Ω" Tpd_ps="10 ns" Tr_ps="3 ns" Tf_ps="4 ns" Logic_Symbol="true" />
+
+<item itemtype="Push" CircId="Push-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-184,-20" rotation="0" hflip="1" vflip="1" label="Direction Control" idLabPos="-42.3171,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" Key="D" />
+
+<item itemtype="DcMotor" CircId="DcMotor-10" mainComp="false" Show_id="true" Show_Val="false" Pos="124,24" rotation="-90" hflip="1" vflip="1" label="DcMotor-10" idLabPos="-22,-48" labelrot="0" valLabPos="-14,36" valLabRot="0" RPM_Nominal="60 _RPM" Volt_Nominal="5 V" Resistance="100 Ω" />
+
+<item itemtype="Push" CircId="Push-19" mainComp="false" Show_id="true" Show_Val="false" Pos="-184,-60" rotation="0" hflip="1" vflip="1" label="Speed control" idLabPos="-28.7826,-25.5038" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" Key="S" />
+
+<item itemtype="Switch" CircId="Switch-21" mainComp="false" Show_id="true" Show_Val="false" Pos="-192,64" rotation="0" hflip="1" vflip="1" label="Motor Power Control" idLabPos="-50.9642,15.0997" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" DT="false" Poles="1" Key="P" />
+
+<item itemtype="Node" CircId="Node-18" mainComp="false" Pos="-256,76" />
+
+<item itemtype="Node" CircId="Node-20" mainComp="false" Pos="-272,-20" />
+
+<item itemtype="Node" CircId="Node-24" mainComp="false" Pos="-256,76" />
+
+<item itemtype="Connector" uid="Connector-12" startpinid="mega328-1-PORTD1" endpinid="L293-7-1A" pointList="-124,-8,-132,-8,-132,-56,-28,-56,-28,28,-12,28" />
+
+<item itemtype="Connector" uid="Connector-17" startpinid="mega328-1-PORTD2" endpinid="L293-7-2A" pointList="-124,0,-140,0,-140,-60,-20,-60,-20,36,-12,36" />
+
+<item itemtype="Connector" uid="Connector-40" startpinid="L293-7-1Y" endpinid="DcMotor-10-rPin" pointList="36,28,36,-44,124,-44,124,-16" />
+
+<item itemtype="Connector" uid="Connector-45" startpinid="L293-7-2Y" endpinid="DcMotor-10-lPin" pointList="36,36,68,36,68,80,124,80,124,64" />
+
+<item itemtype="Connector" uid="Connector-46" startpinid="mega328-1-PORTD6" endpinid="L293-7-12EN" pointList="-124,64,-148,64,-148,100,-52,100,-52,44,-12,44" />
+
+<item itemtype="Connector" uid="Connector-47" startpinid="Led-2-lPin" endpinid="mega328-1-PORTD4" pointList="-256,20,-256,16,-124,16" />
+
+<item itemtype="Connector" uid="Connector-49" startpinid="Ground-3-Gnd" endpinid="Node-18-0" pointList="-256,108,-256,76" />
+
+<item itemtype="Connector" uid="Connector-50" startpinid="Node-18-2" endpinid="Led-2-rPin" pointList="-256,76,-256,52" />
+
+<item itemtype="Connector" uid="Connector-51" startpinid="Push-8-switch0pinN" endpinid="mega328-1-PORTD3" pointList="-168,-20,-152,-20,-152,8,-124,8" />
+
+<item itemtype="Connector" uid="Connector-53" startpinid="Push-19-pinP0" endpinid="Node-20-1" pointList="-200,-60,-272,-60,-272,-20" />
+
+<item itemtype="Connector" uid="Connector-54" startpinid="Push-8-pinP0" endpinid="Node-20-0" pointList="-200,-20,-272,-20" />
+
+<item itemtype="Connector" uid="Connector-68" startpinid="Switch-21-pinP0" endpinid="Node-24-1" pointList="-208,64,-216,64,-216,76,-256,76" />
+
+<item itemtype="Connector" uid="Connector-69" startpinid="Node-20-2" endpinid="Node-24-0" pointList="-272,-20,-272,76,-256,76" />
+
+<item itemtype="Connector" uid="Connector-70" startpinid="Node-24-2" endpinid="Node-18-1" pointList="-256,76,-256,76" />
+
+<item itemtype="Connector" uid="Connector-52" startpinid="mega328-1-PORTB6" endpinid="Push-19-switch0pinN" pointList="-124,40,-148,40,-148,-60,-168,-60" />
+
+<item itemtype="Connector" uid="Connector-64" startpinid="Switch-21-switch0pinN" endpinid="mega328-1-PORTB7" pointList="-176,64,-176,48,-124,48" />
+
+</circuit>
