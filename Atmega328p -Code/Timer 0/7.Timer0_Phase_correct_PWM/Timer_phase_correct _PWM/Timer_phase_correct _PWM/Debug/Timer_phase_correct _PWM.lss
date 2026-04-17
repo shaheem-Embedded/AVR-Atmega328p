@@ -1,0 +1,456 @@
+
+Timer_phase_correct _PWM.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000324  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000002b0  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000009  00800100  00800100  00000324  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000324  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000354  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000040  00000000  00000000  00000394  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000009cb  00000000  00000000  000003d4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000006e8  00000000  00000000  00000d9f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000046a  00000000  00000000  00001487  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000064  00000000  00000000  000018f4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000051e  00000000  00000000  00001958  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000236  00000000  00000000  00001e76  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000030  00000000  00000000  000020ac  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a9 30       	cpi	r26, 0x09	; 9
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 38 01 	call	0x270	; 0x270 <main>
+  88:	0c 94 56 01 	jmp	0x2ac	; 0x2ac <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <_Z22phase_correct_pwm_initv>:
+int dir_flag   = 0; // 0 for Forward, 1 for Reverse
+
+void phase_correct_pwm_init() 
+{
+	//Configure (Enable as 0) Power saver mode for Timer 0;
+    PRR &= ~(1<<PRTIM0);
+  90:	e4 e6       	ldi	r30, 0x64	; 100
+  92:	f0 e0       	ldi	r31, 0x00	; 0
+  94:	80 81       	ld	r24, Z
+  96:	8f 7d       	andi	r24, 0xDF	; 223
+  98:	80 83       	st	Z, r24
+	//Clear OC0A on compare match when up-counting. Set OC0A on compare match when down-counting.;(Non inverting)
+	TCCR0A &= ~(1<<COM0A0);
+  9a:	84 b5       	in	r24, 0x24	; 36
+  9c:	8f 7b       	andi	r24, 0xBF	; 191
+  9e:	84 bd       	out	0x24, r24	; 36
+	TCCR0A |=  (1<<COM0A1);
+  a0:	84 b5       	in	r24, 0x24	; 36
+  a2:	80 68       	ori	r24, 0x80	; 128
+  a4:	84 bd       	out	0x24, r24	; 36
+	//Configure Waveform generation for phase correct PWM mode of operation.(TOP=0XFF)
+	TCCR0A |= (1<<WGM00);
+  a6:	84 b5       	in	r24, 0x24	; 36
+  a8:	81 60       	ori	r24, 0x01	; 1
+  aa:	84 bd       	out	0x24, r24	; 36
+	TCCR0B &= ~(1<<WGM01|1<<WGM02);
+  ac:	85 b5       	in	r24, 0x25	; 37
+  ae:	85 7f       	andi	r24, 0xF5	; 245
+  b0:	85 bd       	out	0x25, r24	; 37
+	//Configure prescalar Bits for 8 prescalar value.
+	TCCR0B&=~(1<<CS00 | 1<<CS02);
+  b2:	85 b5       	in	r24, 0x25	; 37
+  b4:	8a 7f       	andi	r24, 0xFA	; 250
+  b6:	85 bd       	out	0x25, r24	; 37
+	TCCR0B |=(1<<CS01);
+  b8:	85 b5       	in	r24, 0x25	; 37
+  ba:	82 60       	ori	r24, 0x02	; 2
+  bc:	85 bd       	out	0x25, r24	; 37
+    //Configure OC0A as output
+    DDRD |= (1<<DDD6);                 // PWM Pin Output
+  be:	8a b1       	in	r24, 0x0a	; 10
+  c0:	80 64       	ori	r24, 0x40	; 64
+  c2:	8a b9       	out	0x0a, r24	; 10
+  c4:	08 95       	ret
+
+000000c6 <_Z13switch_statusv>:
+}
+
+
+void switch_status()
+{
+	if(!(PIND & (1<<PIND2)))
+  c6:	4a 99       	sbic	0x09, 2	; 9
+  c8:	1e c0       	rjmp	.+60     	; 0x106 <_Z13switch_statusv+0x40>
+	{
+		power_flag ^= 1;
+  ca:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <power_flag>
+  ce:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <power_flag+0x1>
+  d2:	21 e0       	ldi	r18, 0x01	; 1
+  d4:	82 27       	eor	r24, r18
+  d6:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <power_flag+0x1>
+  da:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <power_flag>
+		while(!(PIND & (1<<PIND2)));
+  de:	4a 9b       	sbis	0x09, 2	; 9
+  e0:	fe cf       	rjmp	.-4      	; 0xde <_Z13switch_statusv+0x18>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  e2:	83 ed       	ldi	r24, 0xD3	; 211
+  e4:	90 e3       	ldi	r25, 0x30	; 48
+  e6:	01 97       	sbiw	r24, 0x01	; 1
+  e8:	f1 f7       	brne	.-4      	; 0xe6 <_Z13switch_statusv+0x20>
+  ea:	00 c0       	rjmp	.+0      	; 0xec <_Z13switch_statusv+0x26>
+  ec:	00 00       	nop
+		_delay_ms(50);
+		PORTB |= (1<<PB0);
+  ee:	85 b1       	in	r24, 0x05	; 5
+  f0:	81 60       	ori	r24, 0x01	; 1
+  f2:	85 b9       	out	0x05, r24	; 5
+  f4:	87 ea       	ldi	r24, 0xA7	; 167
+  f6:	91 e6       	ldi	r25, 0x61	; 97
+  f8:	01 97       	sbiw	r24, 0x01	; 1
+  fa:	f1 f7       	brne	.-4      	; 0xf8 <_Z13switch_statusv+0x32>
+  fc:	00 c0       	rjmp	.+0      	; 0xfe <_Z13switch_statusv+0x38>
+  fe:	00 00       	nop
+		_delay_ms(100);
+		PORTB &=~(1<<PB0);
+ 100:	85 b1       	in	r24, 0x05	; 5
+ 102:	8e 7f       	andi	r24, 0xFE	; 254
+ 104:	85 b9       	out	0x05, r24	; 5
+		
+	}
+	if(!(PIND & (1<<PIND1)))
+ 106:	49 99       	sbic	0x09, 1	; 9
+ 108:	1e c0       	rjmp	.+60     	; 0x146 <_Z13switch_statusv+0x80>
+	{
+		dir_flag ^= 1;
+ 10a:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 10e:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 112:	21 e0       	ldi	r18, 0x01	; 1
+ 114:	82 27       	eor	r24, r18
+ 116:	90 93 01 01 	sts	0x0101, r25	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 11a:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+		while(!(PIND & (1<<PIND1)));
+ 11e:	49 9b       	sbis	0x09, 1	; 9
+ 120:	fe cf       	rjmp	.-4      	; 0x11e <_Z13switch_statusv+0x58>
+ 122:	83 ed       	ldi	r24, 0xD3	; 211
+ 124:	90 e3       	ldi	r25, 0x30	; 48
+ 126:	01 97       	sbiw	r24, 0x01	; 1
+ 128:	f1 f7       	brne	.-4      	; 0x126 <_Z13switch_statusv+0x60>
+ 12a:	00 c0       	rjmp	.+0      	; 0x12c <_Z13switch_statusv+0x66>
+ 12c:	00 00       	nop
+		_delay_ms(50);
+		PORTB |= (1<<PB0);
+ 12e:	85 b1       	in	r24, 0x05	; 5
+ 130:	81 60       	ori	r24, 0x01	; 1
+ 132:	85 b9       	out	0x05, r24	; 5
+ 134:	87 ea       	ldi	r24, 0xA7	; 167
+ 136:	91 e6       	ldi	r25, 0x61	; 97
+ 138:	01 97       	sbiw	r24, 0x01	; 1
+ 13a:	f1 f7       	brne	.-4      	; 0x138 <_Z13switch_statusv+0x72>
+ 13c:	00 c0       	rjmp	.+0      	; 0x13e <_Z13switch_statusv+0x78>
+ 13e:	00 00       	nop
+		_delay_ms(100);
+		PORTB &=~(1<<PB0);
+ 140:	85 b1       	in	r24, 0x05	; 5
+ 142:	8e 7f       	andi	r24, 0xFE	; 254
+ 144:	85 b9       	out	0x05, r24	; 5
+	}
+	if(!(PIND & (1<<PIND0)))
+ 146:	48 99       	sbic	0x09, 0	; 9
+ 148:	29 c0       	rjmp	.+82     	; 0x19c <_Z13switch_statusv+0xd6>
+	{
+		while(!(PIND & (1<<PIND0)));
+ 14a:	48 9b       	sbis	0x09, 0	; 9
+ 14c:	fe cf       	rjmp	.-4      	; 0x14a <_Z13switch_statusv+0x84>
+ 14e:	83 ed       	ldi	r24, 0xD3	; 211
+ 150:	90 e3       	ldi	r25, 0x30	; 48
+ 152:	01 97       	sbiw	r24, 0x01	; 1
+ 154:	f1 f7       	brne	.-4      	; 0x152 <_Z13switch_statusv+0x8c>
+ 156:	00 c0       	rjmp	.+0      	; 0x158 <_Z13switch_statusv+0x92>
+ 158:	00 00       	nop
+		_delay_ms(50);
+		count ++;
+ 15a:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <count>
+ 15e:	90 91 05 01 	lds	r25, 0x0105	; 0x800105 <count+0x1>
+ 162:	01 96       	adiw	r24, 0x01	; 1
+ 164:	90 93 05 01 	sts	0x0105, r25	; 0x800105 <count+0x1>
+ 168:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <count>
+		if(count>5)
+ 16c:	06 97       	sbiw	r24, 0x06	; 6
+ 16e:	24 f0       	brlt	.+8      	; 0x178 <_Z13switch_statusv+0xb2>
+		count=0;
+ 170:	10 92 05 01 	sts	0x0105, r1	; 0x800105 <count+0x1>
+ 174:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <count>
+ 178:	83 ed       	ldi	r24, 0xD3	; 211
+ 17a:	90 e3       	ldi	r25, 0x30	; 48
+ 17c:	01 97       	sbiw	r24, 0x01	; 1
+ 17e:	f1 f7       	brne	.-4      	; 0x17c <_Z13switch_statusv+0xb6>
+ 180:	00 c0       	rjmp	.+0      	; 0x182 <_Z13switch_statusv+0xbc>
+ 182:	00 00       	nop
+		_delay_ms(50);
+		PORTB |= (1<<PB0);
+ 184:	85 b1       	in	r24, 0x05	; 5
+ 186:	81 60       	ori	r24, 0x01	; 1
+ 188:	85 b9       	out	0x05, r24	; 5
+ 18a:	87 ea       	ldi	r24, 0xA7	; 167
+ 18c:	91 e6       	ldi	r25, 0x61	; 97
+ 18e:	01 97       	sbiw	r24, 0x01	; 1
+ 190:	f1 f7       	brne	.-4      	; 0x18e <_Z13switch_statusv+0xc8>
+ 192:	00 c0       	rjmp	.+0      	; 0x194 <_Z13switch_statusv+0xce>
+ 194:	00 00       	nop
+		_delay_ms(100);
+		PORTB &=~(1<<PB0);
+ 196:	85 b1       	in	r24, 0x05	; 5
+ 198:	8e 7f       	andi	r24, 0xFE	; 254
+ 19a:	85 b9       	out	0x05, r24	; 5
+ 19c:	08 95       	ret
+
+0000019e <_Z13switch_updatev>:
+	}
+}
+
+void switch_update()
+{
+	if((power_flag)==0)
+ 19e:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <power_flag>
+ 1a2:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <power_flag+0x1>
+ 1a6:	89 2b       	or	r24, r25
+ 1a8:	19 f4       	brne	.+6      	; 0x1b0 <_Z13switch_updatev+0x12>
+	{
+		STATE = STOP;
+ 1aa:	10 92 08 01 	sts	0x0108, r1	; 0x800108 <STATE>
+ 1ae:	0d c0       	rjmp	.+26     	; 0x1ca <_Z13switch_updatev+0x2c>
+	}
+	else
+	{
+		if((dir_flag)==0)
+ 1b0:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 1b4:	90 91 01 01 	lds	r25, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 1b8:	89 2b       	or	r24, r25
+ 1ba:	21 f4       	brne	.+8      	; 0x1c4 <_Z13switch_updatev+0x26>
+		{
+			STATE = FORWARD;
+ 1bc:	81 e0       	ldi	r24, 0x01	; 1
+ 1be:	80 93 08 01 	sts	0x0108, r24	; 0x800108 <STATE>
+ 1c2:	03 c0       	rjmp	.+6      	; 0x1ca <_Z13switch_updatev+0x2c>
+		}
+		else
+		{
+			STATE = REVERSE;
+ 1c4:	82 e0       	ldi	r24, 0x02	; 2
+ 1c6:	80 93 08 01 	sts	0x0108, r24	; 0x800108 <STATE>
+		}
+	}
+	if (count==1) duty = 0;
+ 1ca:	80 91 04 01 	lds	r24, 0x0104	; 0x800104 <count>
+ 1ce:	90 91 05 01 	lds	r25, 0x0105	; 0x800105 <count+0x1>
+ 1d2:	81 30       	cpi	r24, 0x01	; 1
+ 1d4:	91 05       	cpc	r25, r1
+ 1d6:	21 f4       	brne	.+8      	; 0x1e0 <_Z13switch_updatev+0x42>
+ 1d8:	10 92 07 01 	sts	0x0107, r1	; 0x800107 <duty+0x1>
+ 1dc:	10 92 06 01 	sts	0x0106, r1	; 0x800106 <duty>
+	if (count==2) duty = 30;
+ 1e0:	82 30       	cpi	r24, 0x02	; 2
+ 1e2:	91 05       	cpc	r25, r1
+ 1e4:	31 f4       	brne	.+12     	; 0x1f2 <_Z13switch_updatev+0x54>
+ 1e6:	2e e1       	ldi	r18, 0x1E	; 30
+ 1e8:	30 e0       	ldi	r19, 0x00	; 0
+ 1ea:	30 93 07 01 	sts	0x0107, r19	; 0x800107 <duty+0x1>
+ 1ee:	20 93 06 01 	sts	0x0106, r18	; 0x800106 <duty>
+	if (count==3) duty = 100;
+ 1f2:	83 30       	cpi	r24, 0x03	; 3
+ 1f4:	91 05       	cpc	r25, r1
+ 1f6:	31 f4       	brne	.+12     	; 0x204 <_Z13switch_updatev+0x66>
+ 1f8:	24 e6       	ldi	r18, 0x64	; 100
+ 1fa:	30 e0       	ldi	r19, 0x00	; 0
+ 1fc:	30 93 07 01 	sts	0x0107, r19	; 0x800107 <duty+0x1>
+ 200:	20 93 06 01 	sts	0x0106, r18	; 0x800106 <duty>
+	if (count==4) duty = 150;
+ 204:	84 30       	cpi	r24, 0x04	; 4
+ 206:	91 05       	cpc	r25, r1
+ 208:	31 f4       	brne	.+12     	; 0x216 <_Z13switch_updatev+0x78>
+ 20a:	26 e9       	ldi	r18, 0x96	; 150
+ 20c:	30 e0       	ldi	r19, 0x00	; 0
+ 20e:	30 93 07 01 	sts	0x0107, r19	; 0x800107 <duty+0x1>
+ 212:	20 93 06 01 	sts	0x0106, r18	; 0x800106 <duty>
+	if (count==5) duty = 255;
+ 216:	05 97       	sbiw	r24, 0x05	; 5
+ 218:	31 f4       	brne	.+12     	; 0x226 <_Z13switch_updatev+0x88>
+ 21a:	8f ef       	ldi	r24, 0xFF	; 255
+ 21c:	90 e0       	ldi	r25, 0x00	; 0
+ 21e:	90 93 07 01 	sts	0x0107, r25	; 0x800107 <duty+0x1>
+ 222:	80 93 06 01 	sts	0x0106, r24	; 0x800106 <duty>
+ 226:	08 95       	ret
+
+00000228 <_Z13motor_controlv>:
+}
+
+void motor_control()
+{
+	switch(STATE)
+ 228:	80 91 08 01 	lds	r24, 0x0108	; 0x800108 <STATE>
+ 22c:	81 30       	cpi	r24, 0x01	; 1
+ 22e:	79 f0       	breq	.+30     	; 0x24e <_Z13motor_controlv+0x26>
+ 230:	18 f0       	brcs	.+6      	; 0x238 <_Z13motor_controlv+0x10>
+ 232:	82 30       	cpi	r24, 0x02	; 2
+ 234:	99 f0       	breq	.+38     	; 0x25c <_Z13motor_controlv+0x34>
+ 236:	18 c0       	rjmp	.+48     	; 0x268 <_Z13motor_controlv+0x40>
+	{
+			case STOP:
+			PORTC &= ~(1<<PC0);
+ 238:	88 b1       	in	r24, 0x08	; 8
+ 23a:	8e 7f       	andi	r24, 0xFE	; 254
+ 23c:	88 b9       	out	0x08, r24	; 8
+			PORTC &= ~(1<<PC1);
+ 23e:	88 b1       	in	r24, 0x08	; 8
+ 240:	8d 7f       	andi	r24, 0xFD	; 253
+ 242:	88 b9       	out	0x08, r24	; 8
+			count=0;
+ 244:	10 92 05 01 	sts	0x0105, r1	; 0x800105 <count+0x1>
+ 248:	10 92 04 01 	sts	0x0104, r1	; 0x800104 <count>
+			break;
+ 24c:	0d c0       	rjmp	.+26     	; 0x268 <_Z13motor_controlv+0x40>
+			
+			case FORWARD:
+			PORTC |= (1<<PC0);
+ 24e:	88 b1       	in	r24, 0x08	; 8
+ 250:	81 60       	ori	r24, 0x01	; 1
+ 252:	88 b9       	out	0x08, r24	; 8
+			PORTC &= ~(1<<PC1);
+ 254:	88 b1       	in	r24, 0x08	; 8
+ 256:	8d 7f       	andi	r24, 0xFD	; 253
+ 258:	88 b9       	out	0x08, r24	; 8
+			break;
+ 25a:	06 c0       	rjmp	.+12     	; 0x268 <_Z13motor_controlv+0x40>
+			
+			case REVERSE:
+			PORTC |= (1<<PC1);
+ 25c:	88 b1       	in	r24, 0x08	; 8
+ 25e:	82 60       	ori	r24, 0x02	; 2
+ 260:	88 b9       	out	0x08, r24	; 8
+			PORTC &= ~(1<<PC0);
+ 262:	88 b1       	in	r24, 0x08	; 8
+ 264:	8e 7f       	andi	r24, 0xFE	; 254
+ 266:	88 b9       	out	0x08, r24	; 8
+			break;
+	}
+	OCR0A = duty;
+ 268:	80 91 06 01 	lds	r24, 0x0106	; 0x800106 <duty>
+ 26c:	87 bd       	out	0x27, r24	; 39
+ 26e:	08 95       	ret
+
+00000270 <main>:
+}
+
+int main()
+{
+	DDRB |= (1<<DDB0 | 1<<DDB1); // Configure LED as ports as output.
+ 270:	84 b1       	in	r24, 0x04	; 4
+ 272:	83 60       	ori	r24, 0x03	; 3
+ 274:	84 b9       	out	0x04, r24	; 4
+	DDRC |= (1<<DDC0 | 1<<DDC1); // Configure Motor as ports as output.
+ 276:	87 b1       	in	r24, 0x07	; 7
+ 278:	83 60       	ori	r24, 0x03	; 3
+ 27a:	87 b9       	out	0x07, r24	; 7
+	DDRD &= ~(1<<DDD0| 1<<DDD1 |1<<DDD2);//Configure Switches as input.
+ 27c:	8a b1       	in	r24, 0x0a	; 10
+ 27e:	88 7f       	andi	r24, 0xF8	; 248
+ 280:	8a b9       	out	0x0a, r24	; 10
+	PORTD |= (1<<PD0 | 1<< PD1 |1<<PD2);//Enable internal pull up configurations for Input switches.
+ 282:	8b b1       	in	r24, 0x0b	; 11
+ 284:	87 60       	ori	r24, 0x07	; 7
+ 286:	8b b9       	out	0x0b, r24	; 11
+ 288:	83 ec       	ldi	r24, 0xC3	; 195
+ 28a:	99 e0       	ldi	r25, 0x09	; 9
+ 28c:	01 97       	sbiw	r24, 0x01	; 1
+ 28e:	f1 f7       	brne	.-4      	; 0x28c <main+0x1c>
+ 290:	00 c0       	rjmp	.+0      	; 0x292 <main+0x22>
+ 292:	00 00       	nop
+	
+	_delay_ms(10);
+	PORTB |= (1<<PB1);
+ 294:	85 b1       	in	r24, 0x05	; 5
+ 296:	82 60       	ori	r24, 0x02	; 2
+ 298:	85 b9       	out	0x05, r24	; 5
+    phase_correct_pwm_init();
+ 29a:	0e 94 48 00 	call	0x90	; 0x90 <_Z22phase_correct_pwm_initv>
+	while(1)
+	{
+		switch_status();
+ 29e:	0e 94 63 00 	call	0xc6	; 0xc6 <_Z13switch_statusv>
+		switch_update();	
+ 2a2:	0e 94 cf 00 	call	0x19e	; 0x19e <_Z13switch_updatev>
+		motor_control();
+ 2a6:	0e 94 14 01 	call	0x228	; 0x228 <_Z13motor_controlv>
+ 2aa:	f9 cf       	rjmp	.-14     	; 0x29e <main+0x2e>
+
+000002ac <_exit>:
+ 2ac:	f8 94       	cli
+
+000002ae <__stop_program>:
+ 2ae:	ff cf       	rjmp	.-2      	; 0x2ae <__stop_program>

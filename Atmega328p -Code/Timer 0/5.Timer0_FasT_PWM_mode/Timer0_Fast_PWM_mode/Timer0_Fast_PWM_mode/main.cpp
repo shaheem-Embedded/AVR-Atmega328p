@@ -27,6 +27,7 @@ void fast_pwm_init()
 	TCCR0B &=~(1<<CS02);
 	//Configure OC0A as ouput:PORTD6.
 	DDRD |= (1<<DDD6);
+	
 //	--------------------------------------------------------------------------------------
 	/*Calculate % Duty cycle  requirements.
 	
@@ -42,10 +43,11 @@ void fast_pwm_init()
 	              = 16x10^6/(64x256)
 				  = 977Khz.==1khz.(Suitable for LED)
    ----------------------------------------------------------------------------------------*/
-  // OCR0A = 0;         //Value to be loaded IN OCR0x for Fast PWM signal with 50% duty cycle.
-   //Set as output OC0A pin to act as output.
+    // OCR0A = 0;         //Value to be loaded IN OCR0x for Fast PWM signal with 50% duty cycle.
+    //Set as output OC0A pin to act as output.
 					
-    /* Replace with your application code */
+   /* Replace with your application code */
+	
 }
 int main(void)
 { 
