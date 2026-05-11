@@ -1,0 +1,89 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="MCU" CircId="mega328-1" mainComp="false" Show_id="true" Show_Val="false" Pos="-192,-56" rotation="0" hflip="1" vflip="1" label="mega328-1" idLabPos="-1.65613,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Auto_Load="false" saveEepr="true" Logic_Symbol="false" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" MainMcu="true" SerialMon="-1" />
+
+<item itemtype="Led" CircId="Led-2" mainComp="false" Show_id="true" Show_Val="false" Pos="-88,-48" rotation="0" hflip="1" vflip="1" label="Status LED" idLabPos="-14.0682,7.02461" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Yellow" Grounded="false" Threshold="2.4 V" MaxCurrent="30 mA" Resistance="0.6 Ω" />
+
+<item itemtype="Push" CircId="Push-3" mainComp="false" Show_id="true" Show_Val="false" Pos="-260,-44" rotation="0" hflip="1" vflip="1" label="Int_Trigger" idLabPos="-23.7294,-27.0921" labelrot="0" valLabPos="-16,20" valLabRot="0" Norm_Close="false" Poles="1" />
+
+<item itemtype="Led" CircId="Led-6" mainComp="false" Show_id="true" Show_Val="false" Pos="-88,-16" rotation="0" hflip="1" vflip="1" label="Faut_Detection" idLabPos="-20.5842,7.30101" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Yellow" Grounded="false" Threshold="2.4 V" MaxCurrent="30 mA" Resistance="0.6 Ω" />
+
+<item itemtype="DcMotor" CircId="DcMotor-7" mainComp="false" Show_id="true" Show_Val="false" Pos="-168,128" rotation="0" hflip="1" vflip="1" label="DcMotor" idLabPos="34.8059,-22.5513" labelrot="0" valLabPos="-14,36" valLabRot="0" RPM_Nominal="60 _RPM" Volt_Nominal="5 V" Resistance="100 Ω" />
+
+<item itemtype="AudioOut" CircId="AudioOut-8" mainComp="false" Show_id="true" Show_Val="false" Pos="-84,56" rotation="0" hflip="1" vflip="1" label="Buzzer" idLabPos="13.6216,-13.5756" labelrot="0" valLabPos="-16,20" valLabRot="0" Buzzer="false" Impedance="8 Ω" Frequency="1 kHz" />
+
+<item itemtype="Ground" CircId="Ground-12" mainComp="false" Show_id="false" Show_Val="false" Pos="-348,164" rotation="0" hflip="1" vflip="1" label="Ground-12" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="TextComponent" CircId="TextComponent-28" mainComp="false" Show_id="false" Show_Val="false" Pos="-76,-168" rotation="0" hflip="1" vflip="1" label="AVR_interrupt_Low_level_Trigger" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Margin="5 _px" Border="1 _px" Color="#ffffdc" Opacity="1" Font="Helvetica [Cronyx]" Font_Color="#000080" Font_Size="18 _px" Fixed_Width="false" Text="AVR_interrupt_Low_level_Trigger" />
+
+<item itemtype="LAnalizer" CircId="LAnalizer-29" mainComp="false" Show_id="false" Show_Val="false" Pos="148,-12" rotation="0" hflip="1" vflip="1" label="LAnalizer-29" idLabPos="-90,-100" labelrot="0" valLabPos="-16,20" valLabRot="0" Basic_X="135 _px" Basic_Y="135 _px" BufferSize="100000" connectGnd="true" InputImped="10 MΩ" TimDiv="1000000000" TimPos="0" VolDiv="0.15" Tunnels=",,,,,,,," Trigger="9" TimeStep="1000 _ps" AutoExport="false" TresholdR="2.5 V" Bus="false,false,false,false,false,false,false,false," TresholdF="2.5 V" />
+
+<item itemtype="Subcircuit" CircId="L293-46" mainComp="false" Show_id="true" Show_Val="false" Pos="-308,-4" rotation="720" hflip="1" vflip="1" label="L293-46" idLabPos="-0.773017,61.9398" labelrot="0" valLabPos="-16,20" valLabRot="0" Input_High_V="2.5 V" Input_Low_V="2.5 V" Input_Imped="1e+09 Ω" Out_High_V="5 V" Out_Low_V="0 V" Out_Imped="40 Ω" Tpd_ps="10 ns" Tr_ps="3 ns" Tf_ps="4 ns" Logic_Symbol="true" />
+
+<item itemtype="Node" CircId="Node-23" mainComp="false" Pos="-348,80" />
+
+<item itemtype="Node" CircId="Node-24" mainComp="false" Pos="-100,80" />
+
+<item itemtype="Node" CircId="Node-30" mainComp="false" Pos="-216,-44" />
+
+<item itemtype="Node" CircId="Node-36" mainComp="false" Pos="-120,-48" />
+
+<item itemtype="Node" CircId="Node-37" mainComp="false" Pos="-128,-8" />
+
+<item itemtype="Node" CircId="Node-42" mainComp="false" Pos="-48,-48" />
+
+<item itemtype="Node" CircId="Node-53" mainComp="false" Pos="-124,48" />
+
+<item itemtype="Node" CircId="Node-54" mainComp="false" Pos="-224,128" />
+
+<item itemtype="Connector" uid="Connector-48" startpinid="Node-23-1" endpinid="Node-24-1" pointList="-348,80,-100,80" />
+
+<item itemtype="Connector" uid="Connector-49" startpinid="Push-3-pinP0" endpinid="Node-23-0" pointList="-276,-44,-348,-44,-348,80" />
+
+<item itemtype="Connector" uid="Connector-50" startpinid="Node-23-2" endpinid="Ground-12-Gnd" pointList="-348,80,-348,148" />
+
+<item itemtype="Connector" uid="Connector-52" startpinid="Node-24-2" endpinid="AudioOut-8-rPin" pointList="-100,80,-100,56" />
+
+<item itemtype="Connector" uid="Connector-65" startpinid="Push-3-switch0pinN" endpinid="Node-30-0" pointList="-244,-44,-216,-44" />
+
+<item itemtype="Connector" uid="Connector-66" startpinid="Node-30-2" endpinid="mega328-1-PORTD2" pointList="-216,-44,-216,-24,-200,-24" />
+
+<item itemtype="Connector" uid="Connector-64" startpinid="Node-30-1" endpinid="LAnalizer-29-Pin0" pointList="-216,-44,-216,-88,60,-88,60,-76" />
+
+<item itemtype="Connector" uid="Connector-87" startpinid="Node-36-1" endpinid="LAnalizer-29-Pin1" pointList="-120,-48,-120,-80,48,-80,48,-60,60,-60" />
+
+<item itemtype="Connector" uid="Connector-88" startpinid="mega328-1-PORTC1" endpinid="Node-36-0" pointList="-152,-16,-120,-16,-120,-48" />
+
+<item itemtype="Connector" uid="Connector-89" startpinid="Node-36-2" endpinid="Led-2-lPin" pointList="-120,-48,-104,-48" />
+
+<item itemtype="Connector" uid="Connector-91" startpinid="mega328-1-PORTC0" endpinid="Node-37-0" pointList="-152,-8,-128,-8" />
+
+<item itemtype="Connector" uid="Connector-92" startpinid="Node-37-2" endpinid="Led-6-lPin" pointList="-128,-8,-116,-8,-116,-16,-104,-16" />
+
+<item itemtype="Connector" uid="Connector-90" startpinid="Node-37-1" endpinid="LAnalizer-29-Pin2" pointList="-128,-8,-128,-72,40,-72,40,-44,60,-44" />
+
+<item itemtype="Connector" uid="Connector-114" startpinid="Led-6-rPin" endpinid="Node-42-0" pointList="-72,-16,-48,-16,-48,-48" />
+
+<item itemtype="Connector" uid="Connector-115" startpinid="Node-42-2" endpinid="Led-2-rPin" pointList="-48,-48,-72,-48" />
+
+<item itemtype="Connector" uid="Connector-125" startpinid="Node-42-1" endpinid="Node-24-0" pointList="-48,-48,-28,-48,-28,80,-100,80" />
+
+<item itemtype="Connector" uid="Connector-127" startpinid="L293-46-1A" endpinid="mega328-1-PORTD6" pointList="-316,4,-316,-20,-224,-20,-224,40,-200,40" />
+
+<item itemtype="Connector" uid="Connector-128" startpinid="mega328-1-PORTD7" endpinid="L293-46-2A" pointList="-200,48,-232,48,-232,-12,-324,-12,-324,12,-316,12" />
+
+<item itemtype="Connector" uid="Connector-139" startpinid="L293-46-2Y" endpinid="DcMotor-7-rPin" pointList="-268,12,-248,12,-248,168,-112,168,-112,128,-128,128" />
+
+<item itemtype="Connector" uid="Connector-156" startpinid="LAnalizer-29-Pin3" endpinid="Node-53-1" pointList="60,-28,-12,-28,-12,24,-124,24,-124,48" />
+
+<item itemtype="Connector" uid="Connector-157" startpinid="mega328-1-PORTB1" endpinid="Node-53-0" pointList="-152,56,-124,56,-124,48" />
+
+<item itemtype="Connector" uid="Connector-158" startpinid="Node-53-2" endpinid="AudioOut-8-lPin" pointList="-124,48,-100,48" />
+
+<item itemtype="Connector" uid="Connector-161" startpinid="L293-46-1Y" endpinid="Node-54-0" pointList="-268,4,-240,4,-240,128,-224,128" />
+
+<item itemtype="Connector" uid="Connector-162" startpinid="Node-54-2" endpinid="DcMotor-7-lPin" pointList="-224,128,-208,128" />
+
+<item itemtype="Connector" uid="Connector-160" startpinid="Node-54-1" endpinid="LAnalizer-29-Pin4" pointList="-224,128,-224,88,-4,88,-4,-12,60,-12" />
+
+</circuit>
