@@ -37,7 +37,7 @@ int main(void)
 											= 61.035.
 											~ 61 Counts.
 //---------------------------------------------------------------------------------------------------											
-	  *pre-scalar value 64/Calculation. [Methode 2]
+	  *pre-scalar value 1024/Calculation. [Methode 2]
 	   
 	   T = 1/fold =    1/16Mhz.
 	   TNew = 1/fnew,

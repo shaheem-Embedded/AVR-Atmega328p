@@ -28,7 +28,7 @@ void delay_1sec(void)
 int main(void)
 {
 	   TCNT0    = 0;                            //Load initial value to TCNT0;
-	   PRR    &= ~(1<<PRTIM0);                     //To eanble the Timer/Counter 0;
+	   PRR    &= ~(1<<PRTIM0);                     //To eanble the Timer/Counter 0 without power shut down;
 	                          
 	   TCCR0A &= ~(1<<COM0A1|1<<COM0A0);         //Enable Noramal mode of BOTTOM to TOP- 0xFF ;OC0A disconnected;
 	   
