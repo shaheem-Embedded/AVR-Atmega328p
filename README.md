@@ -6,6 +6,13 @@ __2__.Motor Driver:
        Scope covered:  >>Accessing GPIO of microcontroller.
                        >Enable Pull-up & Pull down configurations in Atmega328p.
                        >Implemented State machine logic algorithm for Motor control.
+
+
+
+
+
+
+3.Timer 1 -64 prescalar With Overflow Interrupt.
    
                  
                  
