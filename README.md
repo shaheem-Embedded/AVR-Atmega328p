@@ -13,6 +13,7 @@ __2__.Motor Driver:
 
 
 3.Timer 1 -64 prescalar With Overflow Interrupt.
+4.Uart communication- Implemneted UART trasmission data to serial monitor using "Asynchronous,No parity,1 stop bit" Based String transfer/9600 baud rate.
    
                  
                  
