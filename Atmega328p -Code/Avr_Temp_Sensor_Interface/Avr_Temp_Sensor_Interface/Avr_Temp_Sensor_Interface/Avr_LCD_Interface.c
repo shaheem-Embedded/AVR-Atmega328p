@@ -4,11 +4,12 @@
  * Created: 04-Jun-26 7:26:39 PM
  *  Author: SHAHEEM
  */ 
-#include "Avr_LCD_Interface.h"
-#define F_CPU 16000000UL
 
+#define F_CPU 16000000UL
+#include "Avr_LCD_Interface.h"
 void lcd_enable_pulse();
 static void lcd_send_byte(uint8_t value, uint8_t rs);
+//void send_nibble(uint8_t nib);
 
 void lcd_init(void)
 {
