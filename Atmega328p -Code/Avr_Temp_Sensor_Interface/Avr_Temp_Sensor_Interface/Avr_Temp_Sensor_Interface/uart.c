@@ -4,6 +4,7 @@
  * Created: 02-Jun-26 9:10:20 PM
  *  Author: SHAHEEM
  */ 
+#define F_CPU 16000000UL
 #include <avr/io.h>
 #include <util/delay.h>
 #include "uart.h"
@@ -17,7 +18,7 @@ void uart_init()
 	                        = 16000000/(16x9600)
 							=103.*/
 	UBRR0L = 103;
-	UBRR0H =0;
+	UBRR0H = 0;
 	// Enable Tx and Rx for UART communication
 	UCSR0B |= (1<<RXEN0)|(1<<TXEN0);
 	//Mode select-Asynchronous mode
@@ -41,8 +42,8 @@ void transmit_string(char *str)
 {
 	while(*str != '\0')
 	{
-		while(!(UCSR0A & (1<<UDRE0)));
-		UDR0 = *str;
-		str++;
+		while(!(UCSR0A & (1<<UDRE0)));   //check if UDRE data register Empty flag or not 
+		UDR0 = *str;                     //If empty push the next data to UDR0 data register
+		str++;                           //Increase the Base value of the pointer
 	}
 }

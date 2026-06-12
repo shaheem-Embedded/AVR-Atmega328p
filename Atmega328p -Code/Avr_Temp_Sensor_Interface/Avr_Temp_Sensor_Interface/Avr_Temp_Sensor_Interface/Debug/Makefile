@@ -40,7 +40,9 @@ C_SRCS +=  \
 ../Avr_LCD_Interface.c \
 ../AVR_Temp_Sensor_Interface.c \
 ../library.c \
-../main.c
+../main.c \
+../timer1.c \
+../uart.c
 
 
 PREPROCESSING_SRCS += 
@@ -53,25 +55,33 @@ OBJS +=  \
 Avr_LCD_Interface.o \
 AVR_Temp_Sensor_Interface.o \
 library.o \
-main.o
+main.o \
+timer1.o \
+uart.o
 
 OBJS_AS_ARGS +=  \
 Avr_LCD_Interface.o \
 AVR_Temp_Sensor_Interface.o \
 library.o \
-main.o
+main.o \
+timer1.o \
+uart.o
 
 C_DEPS +=  \
 Avr_LCD_Interface.d \
 AVR_Temp_Sensor_Interface.d \
 library.d \
-main.d
+main.d \
+timer1.d \
+uart.d
 
 C_DEPS_AS_ARGS +=  \
 Avr_LCD_Interface.d \
 AVR_Temp_Sensor_Interface.d \
 library.d \
-main.d
+main.d \
+timer1.d \
+uart.d
 
 OUTPUT_FILE_PATH +=Avr_Temp_Sensor_Interface.elf
 
@@ -109,6 +119,20 @@ LINKER_SCRIPT_DEP+=
 	
 
 ./main.o: .././main.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.4.522\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.4.522\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./timer1.o: .././timer1.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.4.522\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.4.522\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./uart.o: .././uart.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.4.522\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.4.522\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

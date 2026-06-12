@@ -1,25 +1,26 @@
 /*
- * Avr_Timer1_Normal_mode.c
+ * timer1.c
  *
- * Created: 27-May-26 3:48:11 PM
- * Author : SHAHEEM
- */
+ * Created: 12-Jun-26 4:08:46 PM
+ *  Author: SHAHEEM
+ */ 
 #define F_CPU 16000000UL
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
 
-void timer_1_enable();
+#include "timer1.h"
+
 volatile uint8_t overflow_count=0;
-int main(void)
+void LED_port_enable()
 {
 	//Enable initially to 0;
-	DDRD |= (1<<DDD0|1<<DDD5); //Set Data diraction register as output for PORTD0; 
-	DDRB |= (1<<DDB5);
-	PORTD  &=~(1<<PORTD0);//Enable initially to 0;
-	PORTD  &=~(1<<PORTD1);//Enable initially to 0;
-	PORTB  &=~(1<<PORTB5);//Enable initially to 0;
-	timer_1_enable();
+//	DDRD |= (1<<DDD0|1<<DDD5); //Set Data diraction register as output for PORTD; 
+	DDRB |= (1<<DDB0|DDB1);//Set Data diraction register as output for PORTB; 
+	//PORTD  &=~(1<<PORTD0);//Enable initially to 0;
+//	PORTD  &=~(1<<PORTD1);//Enable initially to 0;
+	PORTB  &=~((1<<PORTB0)|(1<<PORTB1));//Enable initially to 0;
+}
 /*---------------------------------------------------------------------------------------------------
 	 pre-scalar value 64  /Calculation. [Methode 1]
 	 T=1/f, 1 clock periode is 1/16mhz = 62.5ns.
@@ -31,12 +32,8 @@ int main(void)
 		 .
 		. .	The total count for 0.5 sec is 	  65535 & (125,000-65535);
 	 (as in execution wait for TCNT1- 1 Overflow i.e 65535 and reload TCNT1 for 59464 counts.
-	 so for 59464 counts, you need to preload TCNT1 with value =(65536?59464) 6072. And repeat the process for continuous operation)
+	 so for 59464 counts, you need to preload TCNT1 with value =(65536-59464)= 6072. And repeat the process for continuous operation)
 //-------------------------------------------------------------------------------------------------- */
-    while (1)
-    {    
-    }
-}
 void timer_1_enable()
 {
      TCNT1 = 0; //Enable Timer1 with 0 initial value;
@@ -56,12 +53,12 @@ ISR(TIMER1_OVF_vect)
 	 overflow_count++;
 	 if (overflow_count==1)
 	 {
-		 TCNT1 = 6072;   // pre-load for remaining time	 
+		 TCNT1 = 6072;   //pre-load for remaining time	 
 	 }
 	 if(overflow_count>=2)
 	 {
-		 PORTB ^= (1<<PORTB5);
-		 PORTD ^= (1<<PORTD1);
+		 PORTB ^= (1<<PORTB0);
+		 PORTB ^= (1<<PORTB1);
 		 overflow_count = 0;
 		 TCNT1 = 0;
 	 }

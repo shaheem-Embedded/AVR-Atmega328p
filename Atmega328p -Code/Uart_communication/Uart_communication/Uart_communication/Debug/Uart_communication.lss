@@ -268,7 +268,7 @@ ISR(TIMER1_OVF_vect)
  18c:	80 81       	ld	r24, Z
  18e:	8f 7c       	andi	r24, 0xCF	; 207
  190:	80 83       	st	Z, r24
-	//Stop bits selection -1bit
+	//Stop bits selection -1 bit
 	UCSR0C &= ~(1<<USBS0);
  192:	80 81       	ld	r24, Z
  194:	87 7f       	andi	r24, 0xF7	; 247

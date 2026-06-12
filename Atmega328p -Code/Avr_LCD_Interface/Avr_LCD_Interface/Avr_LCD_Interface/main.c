@@ -14,7 +14,7 @@ int main(void)
 	lcd_init();
 	lcd_set_cursor(0, 0);
 	lcd_print_string("Atmos.Temp:");
-	   float a=25.45;
+	   //float a=25.45;
 	   lcd_set_cursor(1, 0);
 	   lcd_print_float(a);
 	   lcd_data(0xDF);

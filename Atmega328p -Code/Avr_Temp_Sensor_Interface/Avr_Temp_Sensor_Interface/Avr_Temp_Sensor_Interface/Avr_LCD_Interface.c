@@ -47,19 +47,19 @@ void send_nibble(uint8_t nib)
 	LCD_D_PORT &= ~((1<<LCD_D7_PIN)|(1<<LCD_D6_PIN)|(1<<LCD_D5_PIN)|(1<<LCD_D4_PIN)); //Set all pins value as 0 initially;
 	if(nib & 0x08)
 	{
-		LCD_D_PORT |= (1<<LCD_D7_PIN);
+		LCD_D_PORT |= (1<<LCD_D7_PIN);   //check select the D7 pin only if data is 00001000
 	}
 	if(nib & 0x04)
 	{
-		LCD_D_PORT |= (1<<LCD_D6_PIN);
+		LCD_D_PORT |= (1<<LCD_D6_PIN);  //check select the D7 pin only if data is 00000100
 	}
 	if(nib & 0x02)
 	{
-		LCD_D_PORT |= (1<<LCD_D5_PIN);
+		LCD_D_PORT |= (1<<LCD_D5_PIN); //check select the D7 pin only if data is 00000010
 	}
 	if(nib & 0x01)
 	{
-		LCD_D_PORT |= (1<<LCD_D4_PIN);
+		LCD_D_PORT |= (1<<LCD_D4_PIN); //check select the D7 pin only if data is 000000001
 	}
 	lcd_enable_pulse();
 }
@@ -96,13 +96,13 @@ void lcd_set_cursor(uint8_t row, uint8_t col)				// receives row and column valu
 														
 void lcd_clear(void)
 {
-	lcd_cmd(0x01);
+	lcd_cmd(0x01);  //LCD Display clear command
 }
 
 // this function allows us to return the cursor to home
 void lcd_home(void)
 {
-	lcd_cmd(0x02);
+	lcd_cmd(0x02); //LCD set cursor to home
 }														
 void lcd_cmd(uint8_t cmd)
 {
@@ -111,11 +111,11 @@ void lcd_cmd(uint8_t cmd)
 	if (cmd == 0x01 || cmd == 0x02)//all other commands required only 37us.
 	_delay_ms(2);
 }
-void lcd_print_string(const char *s)
+void lcd_print_string(const char *s)   //pointer based string printing operation
 {
 	while(*s)
 	{
-		lcd_data((uint8_t)*s++);
+		lcd_data((uint8_t)*s++);   //Increase the base address
 	}
 }
 void lcd_data(uint8_t data)
@@ -137,7 +137,7 @@ void lcd_print_float(float value)
 	if (value < 0)
 	{
 		lcd_data('-');
-		value = -value;
+		value = -value;                        
 	}
 	
 	// Integer part
