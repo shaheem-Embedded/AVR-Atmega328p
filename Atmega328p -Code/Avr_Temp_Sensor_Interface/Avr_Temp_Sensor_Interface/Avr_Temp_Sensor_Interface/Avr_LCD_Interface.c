@@ -148,7 +148,7 @@ void lcd_print_float(float value)
 
 	// Fractional part (2 digits)
 	float frac = value - int_part;
-	frac = frac * 100.0f;       // scale to 2 decimal places
+	frac = frac * 100.f;       // scale to 1 decimal places
 	uint16_t frac_part = (uint16_t)(frac + 0.5f);  // rounding
 
 	// Handle leading zero after decimal (e.g., 3.05)

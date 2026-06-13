@@ -34,7 +34,7 @@ uint16_t ADC_read()
 	ADCSRA |= (1<<ADSC); //Set ADSC to start the ADC conversion 
     //channel = channel & 0X07; //Channel limited to 7.
     //ADMUX   = (ADMUX & 0xF8)|channel; //Mux register & with 0XF8 for not altering other values in ADMUX register.
-	while (!(ADCSRA & (1<<ADIF)));// Wait until ADIF is set
+	while (!(ADCSRA & (1<<ADIF)));//  wait until conversion complete flag set
 	ADCSRA |= (1<<ADIF);         // Clear flag by writing 1
     return(ADC);                 // Return the Value of ADC register(ADCL & ADCH)
 }

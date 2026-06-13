@@ -58,7 +58,6 @@ ISR(TIMER1_OVF_vect)
 	 if(overflow_count>=2)
 	 {
 		 PORTB ^= (1<<PORTB0);
-		 PORTB ^= (1<<PORTB1);
 		 overflow_count = 0;
 		 TCNT1 = 0;
 	 }

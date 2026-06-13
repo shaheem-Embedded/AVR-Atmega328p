@@ -14,4 +14,5 @@ void ADC_init();
 uint16_t ADC_read();
 
 
+
 #endif /* AVT_TEMP_SENSROR_INTERFACE_H_ */
